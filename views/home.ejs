@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html >
+<head>
+  
+
+  <title>House Rent</title>
+    <style type="text/css">
+      body{
+        font-family: Arial;
+      }
+    </style>
+  <script type="text/javascript" src="jquery-3.1.1.js"></script>
+  <script type="text/javascript" src="jquery-ui.js"></script>
+  <link rel="stylesheet" type="text/css" href="jquery-ui.css">
+  <link rel="stylesheet" type="text/css" href="jquery-ui.theme.css">
+  <link rel="stylesheet" type="text/css" href="jquery-ui.structure.css">
+  <script type="text/javascript" src="https://cdn-orig.socket.io/socket.io-1.7.3.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function($){
+            $('#SearchBox').autocomplete({
+          source: '/getSearchResult', 
+          type: 'GET'
+            });
+        });
+  </script>
+  </head>
+
+<body>
+    <form method="post">
+    <center>
+      <h1><a href="/home"><img src="home.ico" width="32" height="32"></a>&nbsp HOUSE RENT</h1> <hr> 
+
+      
+      
+
+       <label ><a href="<%=action%>" style="color: red"><%=label%><span style="color: blue"><%=username%></span></a></label> 
+
+
+       <label ><a href="<%=RegistrationAction%>"><%=RegistrationLabel%></a></label> 
+
+      <label ><a href="<%=AccountOptionAction%>"><%=AccountOption%></a></label>
+
+      <label ><a href="/postad">Post Ad </a></label> </br> </br>
+
+      
+      <input name="SearchBox" type="text" value="<%=SearchBoxValue%>" id="SearchBox"> 
+      <input name="Search" type="Submit" value="Search"> 
+      
+
+      <hr>
+      </center>
+
+      <div style="width: 200px; height: 710px;float: right; border-left:3px solid gray;">
+      <div style="padding: 7%">
+      
+
+        <label>Price Range:</label></br>
+        <Input type = 'Radio' Name ='priceRange' value= '0-9999999' checked> None </br>
+        <Input type = 'Radio' Name ='priceRange' value= '0-5000'> <5000 </br>
+        <Input type = 'Radio' Name ='priceRange' value= '5000-10000'> 5000-9999 </br>
+        <Input type = 'Radio' Name ='priceRange' value= '10000-15000'> 10000-14999 </br>
+        <Input type = 'Radio' Name ='priceRange' value= '15000-20000'> 15000-19999 </br>
+        <Input type = 'Radio' Name ='priceRange' value= '20000-9999999'> >20000 </br></br></br>
+
+        <label>Room Number:</label></br>
+
+        <Input type = 'Radio' Name ='RoomNumber' value= '0' checked> All </br>
+        <Input type = 'Radio' Name ='RoomNumber' value= '1' > >1 </br>
+        <Input type = 'Radio' Name ='RoomNumber' value= '2'> >2 </br>
+        <Input type = 'Radio' Name ='RoomNumber' value= '3'> >3 </br>
+        <Input type = 'Radio' Name ='RoomNumber' value= '4'> >4 </br>
+        <Input type = 'Radio' Name ='RoomNumber' value= '5'> >5 </br>
+        </br>
+
+        <label>Category:</label></br>
+        <Input type = 'Radio' Name ='Category' value= '' checked> All </br>
+        <Input type = 'Radio' Name ='Category' value= 'Family' > Family </br>
+        <Input type = 'Radio' Name ='Category' value= 'Bachelor'> Bachelor </br>
+        <Input type = 'Radio' Name ='Category' value= 'Office'> Office </br></br>
+
+        <input type="submit" name="filterSubmit" value="Filter">
+        
+        </div>
+
+        
+
+      </div>
+      <center>
+      
+      <label id="msgBox" style="color:green"><%=message%></label>
+      <input type="hidden" value="<%=message%>" id="msg">
+      
+    <div style="max-height: 710px;overflow-y: scroll;">
+      <table cellpadding="25" cellspacing="20" border="1" rules="all" >
+      <% for(var i=0; i < post.length; i++){ %>
+      
+        <tr>
+
+          <td>
+          <a href="/postdetail/<%=post[i].PostId%>"><img src="<%=post[i].Image%>" width="100" height="100"></a>
+          </td>
+
+          <td>
+          <b>Name:<a href="/postdetail/<%=post[i].PostId%>"><%=post[i].HouseName%></a></b></br>
+          Area:<%=post[i].AreaName%></br><%=post[i].Floor%> Floor,<%=post[i].BedRoom%> Bedrooms,<%=post[i].Dining%> Dining,<%=post[i].Drawing%> Drawing,<%=post[i].Kitchen%> Kitchen<br>
+          Category: <%=post[i].Category%> </br>
+          Rent:<b><%=post[i].Rent%> BDT</b><br>Phone Number: <b><%=post[i].PhoneNumber%></b>
+          </td>
+          
+        </tr>
+
+      <% } %>
+      </table>
+
+      <hr>
+      <h3><%=Stitle%></h3>
+          
+          <table cellpadding='25' cellspacing='20' border='1' rules='all' >
+      <% for(var i=0; i < suggesion.length; i++){ %>
+      
+        <tr>
+
+          <td>
+          <a href='/postdetail/<%=suggesion[i].PostId%>'><img src='../<%=suggesion[i].Image%>' width='100' height='100'></a>
+          </td>
+
+          <td>
+          <b>Name:<a href='/postdetail/<%=suggesion[i].PostId%>'><%=suggesion[i].HouseName%></a></b></br>
+          Area:<%=suggesion[i].AreaName%></br><%=suggesion[i].Floor%> Floor,<%=suggesion[i].BedRoom%> Bedrooms,<%=suggesion[i].Dining%> Dining,<%=suggesion[i].Drawing%> Drawing,<%=suggesion[i].Kitchen%> Kitchen<br>
+          Category: <%=suggesion[i].Category%> </br>
+          Rent:<b><%=suggesion[i].Rent%> BDT</b><br>Phone Number: <b><%=suggesion[i].PhoneNumber%></b>
+          </td>
+          
+        </tr>
+
+      <% } %>
+      </table>
+
+      
+      <input type="hidden" value="<%=Status%>" id="user">
+      </div>
+
+      
+      
+
+    </center>
+
+
+
+
+
+
+    
+    <script type="text/javascript">
+    $(function(){
+      
+
+      var socket = io.connect();
+      var msg =  $('#msg').val();
+        if(msg == "Successfully Posted..."){
+          socket.emit('Posted', {'msg': "New Post Waiting For Approval..."} );
+        }
+
+      socket.on('connect', function(){
+        
+      });
+      socket.on('disconnect', function(){
+       
+      });
+      socket.on('connect_error', function(){
+        
+      });
+      
+      
+      socket.on('incoming data', function(obj){
+        var user =  $('#user').val();
+        if(user == "admin"){
+          $('#msgBox').html(obj.message);
+          
+
+        }
+
+
+        
+      });
+    
+ 
+ 
+
+
+     
+    });
+  </script>
+
+
+</form>
+</body>
+</html>

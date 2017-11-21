@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<style type="text/css">
+			body{
+				font-family: Arial;
+			}
+		</style>
+	</head>
+	<body>
+		<center>
+			
+			<fieldset style="width: 40%">
+			<legend><h2>Create New Post</h2></legend>
+			<form method="post" enctype="multipart/form-data">
+			
+				<table cellpadding="4" cellspacing="4">
+					<tr>
+						<td>House Name</td>
+						<td><input name="HouseName" type="text" /></td>
+					</tr>
+
+					<tr>
+						<td>Floor</td>
+						<td><input name="Floor" type="text" /></td>
+					</tr>
+
+					<tr>
+					<td>Bed Rooms</td>
+					<td>
+					<select name="BedRoom">
+					  <option value="1">1</option>
+					  <option value="2">2</option>
+					  <option value="3">3</option>
+					  <option value="4">4</option>
+					  <option value="5">5</option>
+					  <option value="6">6</option>
+					  <option value="7">7</option>
+					  <option value="8">8</option>
+					</select>
+					</td>
+					</tr>
+
+					
+
+					<tr>
+						<td>Kitchen</td>
+						<td><input type="checkbox" name="Kitchen" value="Kitchen"><br></td>
+					</tr>
+
+					<tr>
+						<td>Dining</td>
+						<td><input type="checkbox" name="Dining" value="Dining"><br></td>
+					</tr>
+
+					<tr>
+						<td>Drawing</td>
+						<td><input type="checkbox" name="Drawing" value="Drawing"><br></td>
+					</tr>
+
+					<tr>
+						<td>Category</td>
+						<td><input type="checkbox" name="Category[]" value="Family" checked>Family
+						<input type="checkbox" name="Category[]" value="Bachelor">Bachelor
+						<input type="checkbox" name="Category[]" value="Office">Office</td>
+					</tr>
+
+					<tr>
+					<td>Area</td>
+					<td>
+					<select name="area">
+					<% for(var i = 0; i < area.length; i++) { %>
+
+					  <option value="<%=area[i].AreaId%>"><%=area[i].AreaName%></option>
+					<% } %>
+					
+					  
+					</select>
+					</td>
+					</tr>
+
+					<tr>
+						<td>Full Adress</td>
+						<td><textarea name="address"></textarea></td>
+					</tr>
+
+					<tr>
+						<td>Phone No</td>
+						<td><input name="PhoneNo" type="text" /></td>
+					</tr>
+
+					<tr>
+						<td>Additional Info</td>
+						<td><textarea name="additional"></textarea>(Optional)</td>
+					</tr>
+
+					<tr>
+						<td>Rent</td>
+						<td><input name="rent" type="text" />BDT</td>
+					</tr>
+
+					<tr>
+						<td></td>
+						<td><input type="radio" name="rentStatus" value="Fixed" checked> Fixed
+  							<input type="radio" name="rentStatus" value="Negotiable"> Negotiable</td>
+					</tr>
+
+					<tr>
+						<td>Image(Size < 1MB)</td>
+						<td><input type="file" name="Image" > </td>
+  							
+					</tr>
+
+					
+
+					
+					
+					<tr>
+						<td>&nbsp;</td>
+						<td><input name="postBtn" type="submit" value="Post"  /></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><a href="/home"><input type="button" value="Back"  /></a></td>
+					</tr>
+				</table>
+
+			</form>
+			</fieldset>
+			
+			<br />
+			
+			<!-- Label to display error message -->
+			 <div style="color: red;">
+			    <%
+			      if(message){
+			        for(var i = 0; i < message.length; i++) {
+			    %>
+			    <p><%= message[i].msg %></p>
+			    <%
+			        }
+			      }
+			    %>
+
+  </div>
+		</center>
+		
+	</body>
+</html>

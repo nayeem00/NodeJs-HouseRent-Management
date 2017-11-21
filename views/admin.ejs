@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>House Rent</title>
+		<style type="text/css">
+			body{
+				font-family: Arial;
+			}
+		</style>
+	</head>
+	<body>
+
+		<center>
+			<h1>Admin Panel</h1> </br><label style="color:red"> {message} </label><hr> 
+
+			
+			
+			<label ><a href="/home">Home</a></label> |
+			<label ><a href="adminPanel/report">Report</a></label> |
+			 <label ><a href="#ApprovedPost">Approved Post</a></label> |
+			 <label ><a href="#pendingPost">Pending Post</a></label> |
+			 <label ><a href="#Area">Area</a></label> |
+			 <label ><a href="#Admin">Admin</a></label> |
+			 <label ><a href="#User">User</a></label>
+			 
+			
+			
+			<hr>
+		     <h3 id="ApprovedPost">Approved Post</h3>
+		     <hr>
+			<table cellpadding="15" cellspacing="20" border="1" rules="all" >
+			<% for(var i=0; i < post.length; i++){ %>
+			
+							<tr>
+
+			          <td>
+			          <a href="/postdetail/<%=post[i].PostId%>"><img src="<%=post[i].Image%>" width="100" height="100"></a>
+			          </td>
+
+			          <td>
+			          <b>Name:<a href="/postdetail/<%=post[i].PostId%>"><%=post[i].HouseName%></a></b></br>
+			          Area:<%=post[i].AreaName%>
+					</td>
+
+				<td>
+				<a href="/userAccount/deletePost/<%=post[i].PostId%>"><input type="Button" value="Delete"></a>
+				<a href="/adminPanel/DisablePost/<%=post[i].PostId%>"><input type="Button" value="Hired"></a>
+				</td>
+					
+				</tr>
+
+			<% } %>
+
+			</table>
+			<hr>
+
+			<h3 id="pendingPost">Pending Post</h3>
+			<hr>
+			<table cellpadding="15" cellspacing="20" border="1" rules="all" >
+			{Pendingpost}
+			
+				<tr>
+
+					<td>
+					<a href="{base}home/postDetail/{PostId}"><img src="./Recources/Images/{Image}" width="40" height="40"></a>
+					</td>
+
+					<td>
+					<b>Name:<a href="{base}home/postDetail/{PostId}">{HouseName}</a></b></br>
+					Area:{AreaName}
+					</td>
+
+				<td>
+				<a href="{base}admin/deletePost/{PostId}"><input type="Button" value="Delete"></a>
+				<a href="{base}admin/approvePost/{PostId}"><input type="Button" value="Appove"></a>
+				</td>
+					
+				</tr>
+
+			{/Pendingpost}
+			</table>
+
+	
+			</table>
+			<hr>
+			<h3 id="Area">Area</h3>
+			<hr>
+			<table cellpadding="15" cellspacing="20" border="1" rules="all" >
+
+			<thead>
+					<td>Name</td>
+					<td>Action</td>
+				</thead>
+			{Area}
+			
+				<tr>
+					
+					<td>{AreaName}</td>
+					<td>
+				<a href="{base}admin/deleteArea/{AreaId}"><input type="Button" value="Delete"></a>
+				</td>
+				</tr>
+				
+
+			{/Area}
+			</table>
+			
+
+		
+			</table>
+			<hr>
+			<h3 id="Admin">Admin</h3>
+			<hr>
+			<table cellpadding="15" cellspacing="20" border="1" rules="all" >
+			<thead>
+					<td>Full Name</td>
+					<td>User Name</td>
+					<td>Phone Number</td>
+				</thead>
+			{Admin}
+			
+				<tr>
+
+					<td>{FullName}</td>
+					<td>{UserName}</td>
+					<td>{PhoneNo}</td>
+					
+				</tr>
+
+			{/Admin}
+			</table>
+
+			
+			</table>
+			<hr>
+			<h3 id="User">User</h3>
+			<hr>
+			<table cellpadding="15" cellspacing="20" border="1" rules="all" >
+			<thead>
+					<td>Full Name</td>
+					<td>User Name</td>
+					<td>Phone Number</td>
+					<td>Action</td>
+				</thead>
+			{User}
+			
+				<tr>
+
+					<td>{FullName}</td>
+					<td>{UserName}</td>
+					<td>{PhoneNo}</td>
+					<td>
+				<a href="{base}admin/deleteUser/{UserId}"><input type="Button" value="Delete"></a>
+				<a href="{base}admin/MakeAdmin/{UserId}"><input type="Button" value="Make Admin"></a>
+				</td>
+					
+				</tr>
+
+			{/User}
+			</table>
+			
+			
+
+		</center>
+	</body>
+
+</html>

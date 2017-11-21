@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registration</title>
+    <style type="text/css">
+      body{
+        font-family: Arial;
+      }
+    </style>
+
+  </head>
+  <body>
+    <center>
+      <fieldset style="width: 40%">
+      <legend><h2>Registration</h2></legend>
+      <form method="post">
+        <table cellpadding="4" cellspacing="4">
+          <tr>
+            <td>USERNAME</td>
+            <td><input name="username" type="text" value="" id="username"/></td>
+          </tr>
+
+          <tr>
+            <td>PASSWORD</td>
+            <td><input name="password" type="password" id="password"/></td>
+          </tr>
+
+          <tr>
+            <td>Re-Type PASSWORD</td>
+            <td><input name="Repassword" type="password" id="Repassword"/></td>
+          </tr>
+
+          <tr>
+            <td>Full Name</td>
+            <td><input name="FullName" type="text" value="" id="FullName"/></td>
+          </tr>
+
+          <tr>
+            <td>Phone No</td>
+            <td><input name="PhoneNo" type="text" value="" id="PhoneNo"/>(Without +88)</td>
+          </tr>
+          
+          <tr>
+            <td>&nbsp;</td>
+            <td><input name="RegistrationBtn" type="submit" value="Submit"  /></td>
+          </tr>
+
+          <tr>
+            <td>&nbsp;</td>
+            <td><a href="/home"><input type="button" value="Back"  /></a></td>
+          </tr>
+
+        </table>
+
+      </form>
+      
+      </fieldset>
+      </br>
+      
+      <!-- Label to display error message -->
+      <div style="color: red;">
+    <%
+      if(errors){
+        for(var i = 0; i < errors.length; i++) {
+    %>
+    <p><%= errors[i].msg %></p>
+    <%
+        }
+      }
+    %>
+
+  </div>
+    </center>
+
+    
+  </body>
+</html>
+
+    
